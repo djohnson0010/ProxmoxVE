@@ -42,13 +42,13 @@ check_container_resources
     wget -q "https://github.com/firefly-iii/firefly-iii/releases/download/v${RELEASE}/FireflyIII-v${RELEASE}.tar.gz"
     tar -xzf FireflyIII-v${RELEASE}.tar.gz -C /opt/firefly --exclude='storage'
     cd /opt/firefly 
-    composer install --no-dev --no-interaction &>/dev/null
+    #composer install --no-dev --no-interaction &>/dev/null
     php artisan migrate --seed --force &>/dev/null
-    php artisan firefly:decrypt-all &>/dev/null
+    #php artisan firefly:decrypt-all &>/dev/null
     php artisan cache:clear &>/dev/null
     php artisan view:clear &>/dev/null
-    php artisan firefly:upgrade-database &>/dev/null
-    php artisan firefly:laravel-passport-keys &>/dev/null
+    php artisan firefly-iii:upgrade-database &>/dev/null
+    php artisan firefly-iii:laravel-passport-keys &>/dev/null
     chown -R www-data:www-data /opt/firefly
     chmod -R 775 /opt/firefly/storage
 
